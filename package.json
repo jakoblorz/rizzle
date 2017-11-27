@@ -1,15 +1,14 @@
 {
-  "name": "rizzled",
+  "name": "rizzle",
   "version": "1.0.0",
-  "description": "replace `node` runtime with `rizzled` to start your nodejs application in cluster mode",
+  "description": "replace `node` runtime with `rizzle` to start your nodejs application in cluster mode",
   "main": "index.js",
   "bin": {
-    "rizzled": "index.js"
+    "rizzle": "index.js"
   },
   "scripts": {
     "build": "tsc",
-    "test": "find ./ -name '*.test.js' | xargs mocha -R spec",
-    "prepublish": "npm run build && npm run test"
+    "prepublish": "npm run build"
   },
   "repository": {
     "type": "git",
