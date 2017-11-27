@@ -1,6 +1,12 @@
 # rizzle
 replace `node` runtime with `rizzle` to start your nodejs application in cluster mode
 
+## Installing
+This package is listed on npm:
+```bash
+npm install rizzle
+```
+
 ## Usage
 You can just replace each `node` call in the terminal/cmd/bash with `rizzle`. Make use of the `-f` and `-c` parameters:
 
