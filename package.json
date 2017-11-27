@@ -1,6 +1,6 @@
 {
   "name": "rizzle",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "replace `node` runtime with `rizzle` to start your nodejs application in cluster mode",
   "main": "index.js",
   "bin": {
