@@ -29,7 +29,7 @@ import * as cluster from "cluster";
 import * as os from "os";
 import * as path from "path";
 
-type SupportedArgCommands = "-c" | "-p" | "-f" | "-v";
+type SupportedArgCommands = "-c" | "-f";
 
 interface IPreMapArg {
     type: "path" | "arg-command" | "arg-value";
@@ -52,7 +52,7 @@ const buildArgumentList = (lst: IArgCommand[], curr: IPreMapArg) => {
         lst[lst.length - 1].payload = curr.payload;
     }
 
-    if (curr.type === "arg-command" && ["-c", "-p", "-f", "-v"].indexOf(curr.payload) !== -1) {
+    if (curr.type === "arg-command" && ["-c", "-f"].indexOf(curr.payload) !== -1) {
         lst.push({ type: curr.payload as SupportedArgCommands, payload: "" });
     }
 
@@ -63,7 +63,27 @@ const commands: IArgCommand[] = args
     .filter((arg) => arg.type !== "path")
     .reduce(buildArgumentList, [] as IArgCommand[]);
 
-// tslint:disable-next-line:no-console
-console.log(args);
-// tslint:disable-next-line:no-console
-console.log(commands);
+const force = commands.filter((arg) => arg.type === "-f").length > 0;
+const count = ((useCustomCount: boolean) => useCustomCount ?
+    commands.filter((arg) => arg.type === "-c" && typeof arg.payload === "number")[0].payload : os.cpus().length)(
+        commands.filter((arg) => arg.type === "-c" && typeof arg.payload === "number").length > 0);
+const file = ((pathFoundInArgs: boolean) => pathFoundInArgs ?
+    args.filter((arg) => arg.type === "path" && typeof arg.payload === "string")[0].payload as string : undefined)(
+        args.filter((arg) => arg.type === "path" && typeof arg.payload === "string").length > 0);
+
+if (!file) {
+    throw new Error("path to main *.js file is missing");
+}
+
+if (cluster.isMaster) {
+    cluster.setupMaster({
+        args: process.argv,
+        exec: path.join(process.cwd(), file),
+    });
+
+    for (let i = 0; i < count; i++) {
+        cluster.fork();
+    }
+
+    cluster.on("exit", () => force ? cluster.fork() : ({}));
+}
