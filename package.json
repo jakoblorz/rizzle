@@ -1,0 +1,28 @@
+{
+  "name": "rizzled",
+  "version": "1.0.0",
+  "description": "replace `node` runtime with `rizzled` to start your nodejs application in cluster mode",
+  "main": "index.js",
+  "bin": {
+    "rizzled": "index.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "test": "find ./ -name '*.test.js' | xargs mocha -R spec",
+    "prepublish": "npm run build && npm run test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jakoblorz/rizzled.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jakoblorz/rizzled/issues"
+  },
+  "homepage": "https://github.com/jakoblorz/rizzled#readme",
+  "dependencies": {
+    "@types/node": "^8.0.53"
+  }
+}
