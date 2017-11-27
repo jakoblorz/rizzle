@@ -12,15 +12,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/jakoblorz/rizzled.git"
+    "url": "git+https://github.com/jakoblorz/rizzle.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/jakoblorz/rizzled/issues"
+    "url": "https://github.com/jakoblorz/rizzle/issues"
   },
-  "homepage": "https://github.com/jakoblorz/rizzled#readme",
+  "homepage": "https://github.com/jakoblorz/rizzle#readme",
   "dependencies": {
     "@types/node": "^8.0.53"
   }
