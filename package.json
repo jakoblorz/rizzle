@@ -1,6 +1,6 @@
 {
   "name": "rizzle",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "replace `node` runtime with `rizzle` to start your nodejs application in cluster mode",
   "main": "index.js",
   "bin": {
@@ -14,14 +14,14 @@
     "type": "git",
     "url": "git+https://github.com/jakoblorz/rizzle.git"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": ["nodejs", "cluster", "scale", "serverless", "simple", "cli"],
+  "author": "Jakob Lorz <jakob@lorz.org>",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/jakoblorz/rizzle/issues"
   },
   "homepage": "https://github.com/jakoblorz/rizzle#readme",
-  "dependencies": {
+  "devDependencies": {
     "@types/node": "^8.0.53"
   }
 }
